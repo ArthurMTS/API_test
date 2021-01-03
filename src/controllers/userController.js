@@ -1,4 +1,3 @@
-const { destroy } = require('../config/database');
 const connection = require('../config/database');
 
 module.exports = {
@@ -21,7 +20,7 @@ module.exports = {
 
     const [user] = await connection('users').insert(data);
 
-    res.sendStatus(200).json(user);
+    res.json(user);
   },
 
   async update (req, res) {
@@ -30,7 +29,7 @@ module.exports = {
 
     await connection('users').update(data).where('id', id);
 
-    res.sendStatus(200).json();
+    res.sendStatus(200);
   },
 
   async destroy (req, res) {
@@ -38,6 +37,6 @@ module.exports = {
 
     await connection('users').delete().where('id', id);
 
-    res.sendStatus(200).json();
+    res.sendStatus(200);
   }
 }
